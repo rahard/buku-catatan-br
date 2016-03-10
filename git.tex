@@ -4,11 +4,25 @@ Sementara server git dapat menggunakan Gogs yang dapat diperoleh di
 https://gogs.io/}
 adalah sebuah sistem untuk melakukan {\em versioning} dari dokumen,
 yang biasanya adalah kode sumber ({\em source code}).
-Biasanya {\em git} digunakan untuk mengembangkan software secara bersama-sama.
+Biasanya {\em git} digunakan untuk mengembangkan software secara bersama-sama,
+tetapi dia dapat digunakan untuk keperluan lain.
+Penulisan buku ini menggunakan {\em git} untuk sinkronisasi
+antar komputer tempat saya bekerja.
 
-Buat direktori tempat bekerja. Pindah ke direktori tersebut dan
+Selain untuk mengembangkan kode bersama, git juga bermanfaat untuk
+mengembangkan kode di komputer yang berbeda.
+Di komputer A, saya bisa bekerja. Setelah selesai, dokumen saya
+simpan ({\em push}) ke server git. 
+Di komputer B, saya bisa mengambil berkas atau perubahan terbaru
+dengan melakukan {\em pull}. Maka pekerjaan di kedua komputer tersebut
+menjadi tersinkronisasi dengan {\em git} sebagai penengah.
+
+Mari kita mulai menggunakan {\em git}.
+Buat sebuah direktori tempat bekerja. Pindah ke direktori tersebut dan
 melakukan inisialisasi {\em git}. 
-Pada direktori tersebut akan dibuat direktori \texttt{.git}.
+Pada direktori tersebut akan dibuat direktori \texttt{.git}
+yang berisi informasi mengenai pekerjaan kita. 
+Untuk saat ini, kita tidak perlu tahu detail dari isi direktori itu.
 
 \begin{lstlisting}
 git init
@@ -18,6 +32,7 @@ ls -a
 Untuk mengetahui konfigurasi git Anda secara global dapat digunakan
 perintah {\em list} berikut. Untuk mengubah konfigurasinya juga dapat
 dilakukan dengan perintah \texttt{git config}.
+Konfigurasi ini hanya perlu dilakukan sekali saja.
 \begin{lstlisting}
 git config --list
 git config --global user.name "budi rahardjo"
@@ -25,21 +40,25 @@ git config user.name
 \end{lstlisting}
 
 Selanjutnya kita mulai menambahkan server git (dalam contoh ini
-IP-nya adalah 192.168.1.1 - untuk kasus Anda coba cari alamat ini,
+IP-nya adalah \texttt{192.168.1.1} - untuk kasus Anda coba cari alamat ini,
 misal di github.com ada di sebelah kanan atas).
 Kemudian kita dapat menarik kode dengan perintah {\em pull}.
 
 \begin{lstlisting}
-git remote add origin http://192.168.1.1/somepath/whatever.git
+git remote add origin http://192.168.1.1/nama-proyek/proyeknya.git
 git pull origin master
 \end{lstlisting}
 
 Boleh jadi kita memulai dengan melakukan {\em clone} juga.
+Contoh di bawah ini kita akan membuat direktori \texttt{libgit2}
+dan mengambil semua berkas yang ada di sana.
 \begin{lstlisting}
 git clone https://github.com/libgit2/libgit2
 \end{lstlisting}
 
-Menambahkan berkas.
+Sekarang kita boleh bekerja dengan berkas-berkas.
+Setelah selesai, berkas perubahaan kita bisa ditambahkan
+dengan memberikan perintah {\em add}.
 
 \begin{lstlisting}
 git add somefile
@@ -47,6 +66,9 @@ git add *.c
 git add LICENSE
 git commit -m 'initial project version'
 \end{lstlisting}
+Pilihan \texttt{-m} tersebut akan mendokumentasikan pesan ke dalam
+perubahan. Jika kita tidak menggunakan opsi tersebut, kita akan
+dibawa ke editor pilihan kita.
 
 Setor perubahan ke server git.
 
