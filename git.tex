@@ -33,3 +33,17 @@ Kemudian kita dapat menarik kode dengan perintah {\em pull}.
 git remote add origin http://192.168.1.1/somepath/whatever.git
 git pull origin master
 \end{lstlisting}
+
+Boleh jadi kita memulai dengan melakukan {\em clone} juga.
+\begin{lstlisting}
+git clone https://github.com/libgit2/libgit2
+\end{lstlisting}
+
+Menambahkan berkas.
+
+\begin{lstlisting}
+git add somefile
+git add *.c
+git add LICENSE
+git commit -m 'initial project version'
+\end{lstlisting}
