@@ -1,0 +1,35 @@
+\chapter{Git}
+Git\footnote{Client git dapat diperoleh dari https://git-scm.com/\\
+Sementara server git dapat menggunakan Gogs yang dapat diperoleh di
+https://gogs.io/}
+adalah sebuah sistem untuk melakukan {\em versioning} dari dokumen,
+yang biasanya adalah kode sumber ({\em source code}).
+Biasanya {\em git} digunakan untuk mengembangkan software secara bersama-sama.
+
+Buat direktori tempat bekerja. Pindah ke direktori tersebut dan
+melakukan inisialisasi {\em git}. 
+Pada direktori tersebut akan dibuat direktori \texttt{.git}.
+
+\begin{lstlisting}
+git init
+ls -a
+\end{lstlisting}
+
+Untuk mengetahui konfigurasi git Anda secara global dapat digunakan
+perintah {\em list} berikut. Untuk mengubah konfigurasinya juga dapat
+dilakukan dengan perintah \texttt{git config}.
+\begin{lstlisting}
+git config --list
+git config --global user.name "budi rahardjo"
+git config user.name
+\end{lstlisting}
+
+Selanjutnya kita mulai menambahkan server git (dalam contoh ini
+IP-nya adalah 192.168.1.1 - untuk kasus Anda coba cari alamat ini,
+misal di github.com ada di sebelah kanan atas).
+Kemudian kita dapat menarik kode dengan perintah {\em pull}.
+
+\begin{lstlisting}
+git remote add origin http://192.168.1.1/somepath/whatever.git
+git pull origin master
+\end{lstlisting}

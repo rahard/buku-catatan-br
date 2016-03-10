@@ -1,0 +1,32 @@
+\chapter{Postgres}
+Postgres (postgresql) merupakan program database yang banyak digunakan
+untuk aplikasi internet. Ini merupakan saingan dari MySQL.
+
+Untuk mengakses database Postgres dari shell dapat digunakan
+program {\em psql}. Ini merupakan bagian dari klien Postgress\footnote{
+(Untuk klien di Mac OS X, saya masih belum menemukan yang pas
+karena saya menggunakan {\em Homebrew} sebagai
+package manager. Ternyata klien Postgres adanya di Fink.
+Sementara ini saya menggunakan {\em PSequel}, yang GUI,
+untuk Mac OS X.)
+}.
+
+%\begin{lstlisting}[frame=single]
+\begin{lstlisting}
+psql -U username -h 192.168.1.1 -d databasename 
+\end{lstlisting}
+
+Untuk menjalankan kode (perintah SQL) yang ada dalam berkas
+``perintah.sql'' dapat dilakukan dengan cara di bawah ini.
+Keluaran akan ditampilkan di {\em stdout}, yang kemudian bisa
+di-pipe ke program lain (atau diarahkan ke file).
+
+\begin{lstlisting}
+psql -U username -h 192.168.1.1 -d databasename -f perintah.sql
+\end{lstlisting}
+
+Isi berkas ``perintah.sql'' adalah seperti ini:
+
+\begin{lstlisting}
+select * from auth_user
+\end{lstlisting}

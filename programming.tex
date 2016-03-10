@@ -1,0 +1,124 @@
+\documentclass[10pt,twoside,openright]{memoir}
+
+%% pemilihan font untuk fixed width fonts
+\usepackage{courier}
+%\usepackage{inconsolata}
+
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=0pt,framexleftmargin=0pt}
+%%\lstset{frame=bottomline}
+\lstset{frame=single}
+
+%\usepackage{marginnote}
+\usepackage{textcomp} % untuk simbol copyright
+
+%% yang di bawah ini bagian dari contoh
+
+%\usepackage{createspace}
+%\usepackage[size=pocket,noicc]{createspace}
+%%\usepackage[paperwidth=4.25in, paperheight=6.875in,bindingoffset=.75in]{geometry}
+%%\usepackage[paperwidth=6in, paperheight=6.875in,bindingoffset=.75in]{geometry}
+%\usepackage[T1]{fontenc}
+%%\usepackage[latin1]{inputenc}
+\usepackage[bahasa]{babel}
+\usepackage{tgtermes}
+
+%\usepackage{mathpazo}
+\usepackage[protrusion=true,expansion=true]{microtype}
+%\usepackage{type1cm}
+%\usepackage{lettrine}
+
+%\checkandfixthelayout
+
+% See the ``Memoir customise'' template for some common customisations
+% Don't forget to read the Memoir manual: memman.pdf
+
+%\title{Catatan Pemrograman BR}
+%\author{Budi Rahardjo}
+%\date{} % Delete this line to display the current date
+
+%% BEGIN TITLE
+
+\makeatletter
+\def\maketitle{%
+  \null
+  \thispagestyle{empty}%
+  \vfill
+  \begin{center}\leavevmode
+    \normalfont
+    {\LARGE\raggedleft \@author\par}%
+    \hrulefill\par
+    {\huge\raggedright \@title\par}%
+    \vskip 1cm
+%    {\Large \@date\par}%
+  \end{center}%
+  \vfill
+  \null
+  \cleardoublepage
+  }
+\makeatother
+\author{Budi Rahardjo}
+\title{Catatan Pemrograman BR}
+\date{}
+
+
+
+
+
+
+
+
+
+
+%%% BEGIN DOCUMENT
+
+\begin{document}
+
+\let\cleardoublepage\clearpage
+
+
+\maketitle
+
+
+
+
+
+
+\frontmatter
+
+\null\vfill
+
+\begin{flushleft}
+\textit{Catatan Pemrograman BR}
+
+
+\textcopyright ~COPYRIGHT BUDI RAHARDJO, PT INSAN INFONESIA
+
+
+ISBN--INFO
+
+ISBN--13: 
+\bigskip
+
+
+
+
+
+ALL RIGHTS RESERVED
+
+
+
+
+\end{flushleft}
+\let\cleardoublepage\clearpage
+
+\mainmatter
+\sloppy
+
+%%\tableofcontents
+\include{pengantar}
+\include{git}
+\include{postgres}
+
+\end{document}
