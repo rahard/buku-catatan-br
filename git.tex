@@ -75,3 +75,22 @@ Setor perubahan ke server git.
 \begin{lstlisting}
 git push origin master
 \end{lstlisting}
+
+Untuk memulai lagi, misal hari berikutnya untuk bekerja.
+Contoh berikut menunjukkan bahwa apa yang ada di direktori kita
+sama dengan ada yang di (remote) server.
+\begin{lstlisting}
+git pull origin master
+From https://github.com/rahard/buku-catatan-br
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+\end{lstlisting}
+
+Sekali-sekali saya cek apakah saya membuat perubahan yang perlu
+saya setor. Ada daftar berkas yang berubah dan perlu saya
+tambahkan dengan perintah add sebelum di-commit.
+\begin{lstlisting}
+git status
+git add fileyangberubah
+git commit -m 'perubahan ini tentang apa'
+\end{lstlisting}

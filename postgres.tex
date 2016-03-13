@@ -23,6 +23,8 @@ di-pipe ke program lain (atau diarahkan ke file).
 
 \begin{lstlisting}
 psql -U username -h 192.168.1.1 -d databasename -f perintah.sql
+psql -U username -h 192.168.1.1 -d databasename -f perintah.sql | more
+psql -U username -h 192.168.1.1 -d databasename -f perintah.sql > out.txt
 \end{lstlisting}
 
 Isi berkas ``perintah.sql'' adalah seperti ini:
