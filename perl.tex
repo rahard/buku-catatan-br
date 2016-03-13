@@ -1,0 +1,146 @@
+\chapter{Perl}
+Perl adalah bahasa pemrograman kesukaan saya.
+Pada mulanya, sekitar akhir tahun 80-an, Perl merupakan 
+satu-satunya bahasa pemrograman yang {\em portable}.
+Saya menggunakan banyak komputer dengan sistem operasi yang
+berbeda-beda; MS-DOS, UNIX dan variasinya (SunOS, Solaris, AIX,
+SCO UNIX, HP-UX, Linux, FreeBSD, OpenBSD).
+Sesungguhnya ada bahasa lain yang juga tersedia di berbagai
+platform , yaitu bahasa {\em C}, tetapi bahasa C harus dirakit
+({\em compile}) terlebih dahulu, sementara bahasa {\em Perl} 
+adalah intrepreter yang langsung dapat dieksekusi tanpa melalui proses rakit.
+Siklus pengembangan program menjadi lebih cepat.
+
+Cara saya memprogram dalam bahasa Perl, sesungguhnya
+seperti cara saya membuat program program dalam bahasa {\em C}.
+Saya lebih menekankan aspek {\em readability} daripada
+membuat program yang singkat dan padat.
+Padahal banyak programmer Perl yang cenderung membuat programnya
+singkat, bahkan sebaris yang disebut {\em one-liner}.
+
+Saya sering menggunakan bahasa Perl. Banyak hal yang sudah teringat 
+di kepala saya sehingga tidak membutuhkan catatan ini.
+Oleh sebab itu mungkin saja catatan ini terlalu ``meloncat''.
+
+Salah satu yang paling dibenci oleh orang (bukan programmer Perl)
+terhadap bahasa Perl adalah penggunaan dolar (\$) atau karakter
+lainnya (@, !, dan seterusnya) untuk variabel yang membuat kode terlihat
+seperti banyak cacing. ha ha ha.
+
+\section{Variabel}
+Variabel di perl ada beberapa jenis dan ini ditunjukkan dengan
+karakter di depan nama variabelnya.
+\begin{itemize}
+\item Dolar \texttt{\$} untuk skalar. Contoh \texttt{\$x = 'A'}, 
+   \texttt{\$x[0]=123},
+   dan seterusnya. Tipe dari variabel tersebut bebas,
+   bisa numerik (integer) atau string.
+   (Ini enaknya perl dan juga sekaligus bahayanya.)
+\item Tanda {\em at} \texttt{@} untuk array. Contoh \texttt{@x}.
+   Elemen dari array tersebut dapat diakses dengan 
+   tamda dolar \texttt{\$x[i]}.
+\item Persen (\%) untuk {\em associative array}. Contoh \texttt{\%x}.
+   Elemen diakses dengan menggunakan \texttt{\$x\{key\}}.
+   Ini adalah salah satu hal yang paling asyik dari perl.
+   Saya bisa menggunakan apa saja (umumnya string) sebagai {\em key}
+   dari {\em associative array} ini. Contoh 
+   \texttt{\$header\{Nama\}="Budi Rahardjo"},
+   \texttt{\$header\{Twitter\}="@rahard"}
+\end{itemize}
+
+\section{Loop}
+Salah satu hal yang sering dilakukan oleh sebuah program adalah
+membuat pengulangan (loop).
+Jika kita mengetahui jumlah loop, maka biasanya {\em for-loop}
+merupakan construct yang paling lazim.
+Bagi yang familier dengan bahasa {\em C}, bentuk ini mirip sekali
+dengan loop di bahasa {\em C}.
+\begin{lstlisting}
+for ($i=0; $i<10; $i++) {
+   print "$i ... ";
+}
+\end{lstlisting}
+
+Look juga digunakan untuk memproses sebuah berkas, membaca baris
+per-baris dari baris pertama hingga akhir berkas (\texttt{EOF}).
+Jika kita memiliki skrip \texttt{baca.pl} dengan isi seperti
+di bawah ini.
+\begin{lstlisting}
+while (<>) {
+   print $_;
+}
+\end{lstlisting}
+Kemudian dijalakan dengan memberikan nama berkas yang akan diproses,
+\texttt{berkas-data.txt}. Berkas tersebut akan dibaca baris per-baris
+dan akan ditampilkan (print).
+Variabel \texttt{\$\_} berisi baris yang dibaca.
+\begin{lstlisting}
+perl baca.pl berkas-data.txt
+\end{lstlisting}
+
+\section{Topic Generator}
+Berikut ini adalah sebuah contoh skrip yang saya beri nama
+\texttt{generator.pl}.
+Skrip ini terinspirasi dari kesulitan orang dalam mencari topik
+untuk menulis di blognya. Skrip ini menampilkan (generate) topik.
+Sesungguhnya skrip ini hanya membaca topik-topik yang sudah dituliskan
+dalam berkas \texttt{topics.txt}, kemudian memilih secara random
+salah satu dari baris (topik) tersebut.
+Setiap topik dipisahkan dengan dua garis (dash).
+
+Contoh (cuplikan) isi berkas \texttt{topics.txt} adalah 
+sebagai berikut. Anda tinggal menambahkan topik baru ke
+dalam berkas tersebut. Skrip akan langsung menggunakannya
+sebagai bagian dari pilihan.
+\begin{lstlisting}
+Ceritakan tentang buku yang paling berkesan kepada Anda
+--
+Ceritakan tentang media sosial yang paling sering Anda gunakan.
+Mengapa Anda sering menggunakan itu?
+--
+Jika Anda menjadi superhero, siapa yang Anda pilih?
+--
+\end{lstlisting}
+
+Berikut ini adalah kode \texttt{generate.pl} tersebut.
+Penjelasan akan saya berikan di bawah.
+
+\lstset{
+  numbers=left,
+  firstnumber=1,
+  numberfirstline=true
+}
+\lstinputlisting[language=Perl]{generate2.pl}
+\lstset{numbers=none}
+
+Baris pertama hanya menunjukkan dimana interpreter perl berada.
+Baris 2, set nama berkas topik ke variabel \texttt{\$topicDB}.
+Baris 3, membuka berkas tersebut dalam mode read
+(lihat tanda $<$ ) dan apabila gagal akan menampilkan
+pesan (\texttt{die \$!}).
+Ini adalah salah satu hal yang menarik bagi saya,
+yaitu error message akan ada pada variabel itu.
+Tinggal di-print saja.
+(Tentu saja ini bagus untuk command line script,
+tapi tidak bagus kalau dijadikan aplikasi web-based.)
+
+Baris ke 4, menyiapkan diri untuk memulai menghitung
+jumlah topik (ke dalam variabel \texttt{\$count}).
+Baris ke 5, melakukan looping terhadap berkas topik itu.
+Jika menemukan baris yang dimulai dengan garis dua
+(--) maka counter perlu dinaikkan.
+Baris ke 6, memasukkan kalimat (baris) ke dalam 
+associative array \texttt{\%topic} (dengan nomor topik
+sebagai key).
+Dia dibuat begitu agar kalau ada topik yang lebih dari
+satu baris, digabung menjadi satu variabel.
+
+Baris ke 9, memilih salah satu dari topik secara random.
+Angka random dipilih maksimal sama dengan jumlah
+topik.
+Baris ke 10, menampilkan di layar. Mudah bukan?
+
+\section{To Do}
+Hal-hal yang belum saya catat adalah tentang {\em search and replace}
+dan {\em regular expression} (regex).
+
